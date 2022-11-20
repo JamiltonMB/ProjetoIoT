@@ -1,0 +1,359 @@
+[
+    {
+        "id": "557461ecb1a838ae",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8d862159765167f4",
+        "type": "inject",
+        "z": "557461ecb1a838ae",
+        "name": "Criar Dados",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "290108ce7e14292c"
+            ]
+        ]
+    },
+    {
+        "id": "290108ce7e14292c",
+        "type": "create dataset",
+        "z": "557461ecb1a838ae",
+        "name": "",
+        "path": "/home/jamilton/.node-red/node_modules/node-red-contrib-machine-learning-v2/test/iot.csv",
+        "saveFolder": "/home/jamilton/.node-red/node_modules/node-red-contrib-machine-learning-v2/test/datasets",
+        "saveName": "iot",
+        "input": "0, 1",
+        "output": "1",
+        "trainingPartition": "",
+        "shuffle": true,
+        "seed": "",
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "f6f935a53be2b576"
+            ]
+        ]
+    },
+    {
+        "id": "f6f935a53be2b576",
+        "type": "debug",
+        "z": "557461ecb1a838ae",
+        "name": "print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "9606af437437f0f2",
+        "type": "inject",
+        "z": "557461ecb1a838ae",
+        "name": "Treinar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "5e32b32a18bb81c3"
+            ]
+        ]
+    },
+    {
+        "id": "5e32b32a18bb81c3",
+        "type": "load dataset",
+        "z": "557461ecb1a838ae",
+        "name": "",
+        "datasetFolder": "/home/jamilton/.node-red/node_modules/node-red-contrib-machine-learning-v2/test/datasets",
+        "datasetName": "iot",
+        "partition": "train.csv",
+        "input": true,
+        "output": true,
+        "x": 330,
+        "y": 280,
+        "wires": [
+            [
+                "caaaeefa62dc7024"
+            ],
+            [
+                "6bb5bf50817ef710"
+            ]
+        ]
+    },
+    {
+        "id": "80e84787b8c096d8",
+        "type": "debug",
+        "z": "557461ecb1a838ae",
+        "name": "print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6bb5bf50817ef710",
+        "type": "debug",
+        "z": "557461ecb1a838ae",
+        "name": "error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d9f4e50a7e781710",
+        "type": "inject",
+        "z": "557461ecb1a838ae",
+        "name": "Prever",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 620,
+        "wires": [
+            [
+                "7c48505dc4dcc494",
+                "98202a1f5d8946ba"
+            ]
+        ]
+    },
+    {
+        "id": "7c48505dc4dcc494",
+        "type": "load dataset",
+        "z": "557461ecb1a838ae",
+        "name": "",
+        "datasetFolder": "/home/jamilton/.node-red/node_modules/node-red-contrib-machine-learning-v2/test/datasets",
+        "datasetName": "iot",
+        "partition": "test.csv",
+        "input": false,
+        "output": true,
+        "x": 230,
+        "y": 520,
+        "wires": [
+            [
+                "5b0a3479c3b69a0d"
+            ],
+            [
+                "b31166f885ae6457"
+            ]
+        ]
+    },
+    {
+        "id": "98202a1f5d8946ba",
+        "type": "load dataset",
+        "z": "557461ecb1a838ae",
+        "name": "",
+        "datasetFolder": "/home/jamilton/.node-red/node_modules/node-red-contrib-machine-learning-v2/test/datasets",
+        "datasetName": "iot",
+        "partition": "test.csv",
+        "input": true,
+        "output": false,
+        "x": 210,
+        "y": 720,
+        "wires": [
+            [
+                "5498db433f984853",
+                "271ecd69c5c792de"
+            ],
+            [
+                "b31166f885ae6457"
+            ]
+        ]
+    },
+    {
+        "id": "bac175b78512f61f",
+        "type": "debug",
+        "z": "557461ecb1a838ae",
+        "name": "print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b31166f885ae6457",
+        "type": "debug",
+        "z": "557461ecb1a838ae",
+        "name": "error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "5498db433f984853",
+        "type": "predictor",
+        "z": "557461ecb1a838ae",
+        "name": "",
+        "modelPath": "/home/jamilton/.node-red/node_modules/node-red-contrib-machine-learning-v2/test/models",
+        "modelName": "iot.b",
+        "x": 380,
+        "y": 680,
+        "wires": [
+            [
+                "5b0a3479c3b69a0d",
+                "55c91fb7fd45b9e2"
+            ],
+            [
+                "b31166f885ae6457"
+            ]
+        ]
+    },
+    {
+        "id": "5b0a3479c3b69a0d",
+        "type": "assessment",
+        "z": "557461ecb1a838ae",
+        "name": "",
+        "score": "accuracy_score",
+        "x": 530,
+        "y": 520,
+        "wires": [
+            [
+                "bac175b78512f61f"
+            ],
+            [
+                "b31166f885ae6457"
+            ]
+        ]
+    },
+    {
+        "id": "caaaeefa62dc7024",
+        "type": "decision tree classifier",
+        "z": "557461ecb1a838ae",
+        "name": "",
+        "savePath": "/home/jamilton/.node-red/node_modules/node-red-contrib-machine-learning-v2/test/models",
+        "saveName": "iot.b",
+        "maxDepth": "",
+        "criterion": "gini",
+        "splitter": "best",
+        "x": 560,
+        "y": 240,
+        "wires": [
+            [
+                "80e84787b8c096d8"
+            ],
+            [
+                "6bb5bf50817ef710"
+            ]
+        ]
+    },
+    {
+        "id": "55c91fb7fd45b9e2",
+        "type": "debug",
+        "z": "557461ecb1a838ae",
+        "name": "processados",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "271ecd69c5c792de",
+        "type": "debug",
+        "z": "557461ecb1a838ae",
+        "name": "entrada",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 820,
+        "wires": []
+    }
+]
