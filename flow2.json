@@ -1,0 +1,344 @@
+[
+    {
+        "id": "9cfe5afecd15f1f4",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f28d404af90d0791",
+        "type": "calculate",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "pauseType": "timed",
+        "calculation": "average",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "2c3478497b625784"
+            ]
+        ]
+    },
+    {
+        "id": "336dba524b148b89",
+        "type": "inject",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "f28d404af90d0791"
+            ]
+        ]
+    },
+    {
+        "id": "2c3478497b625784",
+        "type": "debug",
+        "z": "9cfe5afecd15f1f4",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "4b88676083fcc8aa",
+        "type": "inject",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "9",
+        "payloadType": "num",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "f28d404af90d0791"
+            ]
+        ]
+    },
+    {
+        "id": "6fd2e06447fa08dd",
+        "type": "inject",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "e377baf3dbea32a9"
+            ]
+        ]
+    },
+    {
+        "id": "e377baf3dbea32a9",
+        "type": "file in",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "filename": "/home/jamilton/Área de Trabalho/iot.csv",
+        "filenameType": "str",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 360,
+        "y": 40,
+        "wires": [
+            [
+                "3f1e4a83f1c8dc38"
+            ]
+        ]
+    },
+    {
+        "id": "3f1e4a83f1c8dc38",
+        "type": "json",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 650,
+        "y": 40,
+        "wires": [
+            [
+                "f28d404af90d0791"
+            ]
+        ]
+    },
+    {
+        "id": "b1790c4805871a7c",
+        "type": "file",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "filename": "/home/jamilton/Área de Trabalho/iottempo.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "6ed69e54d79eb96d"
+            ]
+        ]
+    },
+    {
+        "id": "82195e7bb8498218",
+        "type": "inject",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "d32c39df83e7ea28"
+            ]
+        ]
+    },
+    {
+        "id": "6ed69e54d79eb96d",
+        "type": "debug",
+        "z": "9cfe5afecd15f1f4",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "e2ad7c899f2ff09f",
+        "type": "function",
+        "z": "9cfe5afecd15f1f4",
+        "name": "tempo",
+        "func": "//var now = new Date().toLocaleString(\"en-GB\");\nvar now = new Date().toLocaleString(\"br-BR\");\n//var now = new Date();\n//var antiga = new Date(msg.payload).toLocaleString(\"br-BR\");\n//var atual = new Date().toLocaleString(\"br-BR\");\n//var tempo = antiga.date() - Date.now();\nreturn { payload: now };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 420,
+        "wires": [
+            [
+                "b1790c4805871a7c"
+            ]
+        ]
+    },
+    {
+        "id": "d32c39df83e7ea28",
+        "type": "file in",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "filename": "/home/jamilton/Área de Trabalho/iottempo.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 260,
+        "y": 520,
+        "wires": [
+            [
+                "e2ad7c899f2ff09f",
+                "29c1b2b2cd1a3abf",
+                "376dceafaaafff88"
+            ]
+        ]
+    },
+    {
+        "id": "bb1229c7c2c9a6c0",
+        "type": "debug",
+        "z": "9cfe5afecd15f1f4",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "29c1b2b2cd1a3abf",
+        "type": "function",
+        "z": "9cfe5afecd15f1f4",
+        "name": "tempos",
+        "func": "var tempoPassado = new Date(msg.payload).toLocaleString(\"br-BR\");\nvar tempoAtual = new Date().toLocaleString(\"br-BR\");\nlet minutos = 60*1000;\nvar tempo = ((new Date(tempoAtual).getTime()) - (new Date(tempoPassado).getTime())) / minutos; \n//let teste = new Date(tempoAtual).getHours();\n//tempo = Math.abs(tempo);\n\nlet teste = getMinutes(tempoAtual, tempoPassado);\nreturn { payload: teste};\n\nfunction getMinutes(data1, data2) {\n    data1 = new Date(data1);\n    data2 = new Date(data2);\n    let segundos1 = data1.getSeconds();\n    let minutos1 = data1.getMinutes();\n    let horas1 = data1.getHours();\n\n    let segundos2 = data2.getSeconds();\n    let minutos2 = data2.getMinutes();\n    let horas2 = data2.getHours();\n\n    let tempo1 = (horas1*60)+(minutos1)+(segundos1/60);\n    let tempo2 = (horas2*60)+(minutos2)+(segundos2/60);\n   \n    let total = tempo1 - tempo2;\n    return total\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 620,
+        "wires": [
+            [
+                "c2fa5bca0ab78047"
+            ]
+        ]
+    },
+    {
+        "id": "376dceafaaafff88",
+        "type": "debug",
+        "z": "9cfe5afecd15f1f4",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "c2fa5bca0ab78047",
+        "type": "file",
+        "z": "9cfe5afecd15f1f4",
+        "name": "",
+        "filename": "/home/jamilton/Área de Trabalho/iot.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 560,
+        "y": 720,
+        "wires": [
+            [
+                "bb1229c7c2c9a6c0"
+            ]
+        ]
+    }
+]
