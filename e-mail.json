@@ -1,0 +1,79 @@
+[
+    {
+        "id": "d45d8951ec45f83f",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bd6b1ec064902074",
+        "type": "e-mail out",
+        "z": "d45d8951ec45f83f",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "name": "jamilton.mb@gmail.com",
+        "dname": "E-mail",
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "a43b93a394f09dc9"
+            ]
+        ]
+    },
+    {
+        "id": "0a1f7b1dfe0551eb",
+        "type": "inject",
+        "z": "d45d8951ec45f83f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "body",
+                "v": "teste3",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "teste2",
+        "payload": "Teste",
+        "payloadType": "str",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "bd6b1ec064902074",
+                "a43b93a394f09dc9"
+            ]
+        ]
+    },
+    {
+        "id": "a43b93a394f09dc9",
+        "type": "debug",
+        "z": "d45d8951ec45f83f",
+        "name": "média",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 80,
+        "wires": []
+    }
+]
