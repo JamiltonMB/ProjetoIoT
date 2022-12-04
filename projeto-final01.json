@@ -1,0 +1,391 @@
+[
+    {
+        "id": "8c0728bb0b08ab8d",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2ca82b845aec2416",
+        "type": "mqtt in",
+        "z": "8c0728bb0b08ab8d",
+        "name": "Presença",
+        "topic": "matheusvidal/feeds/presenca",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "feb684f7aebe5171",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 60,
+        "wires": [
+            [
+                "a4c148b660f50760"
+            ]
+        ]
+    },
+    {
+        "id": "7386c7abc438a695",
+        "type": "mqtt in",
+        "z": "8c0728bb0b08ab8d",
+        "name": "Vibração",
+        "topic": "matheusvidal/feeds/vibracao",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "feb684f7aebe5171",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "a4c148b660f50760",
+                "0efe6eb8d02e97a9"
+            ]
+        ]
+    },
+    {
+        "id": "a4c148b660f50760",
+        "type": "debug",
+        "z": "8c0728bb0b08ab8d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "7e9607962ae08b4d",
+        "type": "calculate",
+        "z": "8c0728bb0b08ab8d",
+        "name": "",
+        "pauseType": "timed",
+        "calculation": "average",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "x": 680,
+        "y": 480,
+        "wires": [
+            [
+                "858a4a7b2f662c41",
+                "5002f87c2632913a"
+            ]
+        ]
+    },
+    {
+        "id": "defdee990f6748a8",
+        "type": "json",
+        "z": "8c0728bb0b08ab8d",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 690,
+        "y": 420,
+        "wires": [
+            [
+                "7e9607962ae08b4d"
+            ]
+        ]
+    },
+    {
+        "id": "858a4a7b2f662c41",
+        "type": "debug",
+        "z": "8c0728bb0b08ab8d",
+        "name": "média",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5002f87c2632913a",
+        "type": "e-mail",
+        "z": "8c0728bb0b08ab8d",
+        "server": "smtp.gmail.com",
+        "port": "465",
+        "secure": true,
+        "tls": false,
+        "name": "jamilton.mb@gmail.com",
+        "dname": "",
+        "x": 890,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "790b5c201b0a6070",
+        "type": "function",
+        "z": "8c0728bb0b08ab8d",
+        "name": "tempo",
+        "func": "var now = new Date().toLocaleString(\"br-BR\");\nreturn { payload: now };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "032274c2eefcfc2a"
+            ]
+        ]
+    },
+    {
+        "id": "0efe6eb8d02e97a9",
+        "type": "file in",
+        "z": "8c0728bb0b08ab8d",
+        "name": "",
+        "filename": "/home/pi/Desktop/ProjetoIoT-main/iottempo.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 280,
+        "y": 260,
+        "wires": [
+            [
+                "e72cbc047ea4cec4",
+                "790b5c201b0a6070",
+                "15d3d56e1e9f2d15"
+            ]
+        ]
+    },
+    {
+        "id": "032274c2eefcfc2a",
+        "type": "file",
+        "z": "8c0728bb0b08ab8d",
+        "name": "",
+        "filename": "/home/pi/Desktop/ProjetoIoT-main/iottempo.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 680,
+        "y": 100,
+        "wires": [
+            [
+                "1406ceab82e23990"
+            ]
+        ]
+    },
+    {
+        "id": "e72cbc047ea4cec4",
+        "type": "debug",
+        "z": "8c0728bb0b08ab8d",
+        "name": "Tempo Antigo",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1406ceab82e23990",
+        "type": "debug",
+        "z": "8c0728bb0b08ab8d",
+        "name": "Tempo Atual",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "15d3d56e1e9f2d15",
+        "type": "function",
+        "z": "8c0728bb0b08ab8d",
+        "name": "tempos",
+        "func": "var tempoPassado = new Date(msg.payload).toLocaleString(\"br-BR\");\nvar tempoAtual = new Date().toLocaleString(\"br-BR\");\nlet tempoTotal = getMinutes(tempoAtual, tempoPassado);\n\nreturn { payload: tempoTotal};\n\nfunction getMinutes(data1, data2) {\n    data1 = new Date(data1);\n    data2 = new Date(data2);\n    let segundos1 = data1.getSeconds();\n    let minutos1 = data1.getMinutes();\n    let horas1 = data1.getHours();\n\n    let segundos2 = data2.getSeconds();\n    let minutos2 = data2.getMinutes();\n    let horas2 = data2.getHours();\n\n    let tempo1 = (horas1*60)+(minutos1)+(segundos1/60);\n    let tempo2 = (horas2*60)+(minutos2)+(segundos2/60);\n   \n    let total = tempo1 - tempo2;\n    return total\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "93d9e3e540cbf041"
+            ]
+        ]
+    },
+    {
+        "id": "93d9e3e540cbf041",
+        "type": "file",
+        "z": "8c0728bb0b08ab8d",
+        "name": "",
+        "filename": "/home/pi/Desktop/ProjetoIoT-main/iot.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "b7affdcf02c37255",
+                "f72afb8fd8b0da70"
+            ]
+        ]
+    },
+    {
+        "id": "b7affdcf02c37255",
+        "type": "debug",
+        "z": "8c0728bb0b08ab8d",
+        "name": "Tempo Calculado em minutos",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1cfc8f8fd94e2e46",
+        "type": "inject",
+        "z": "8c0728bb0b08ab8d",
+        "name": "Salvar tempo inicial",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 350,
+        "y": 40,
+        "wires": [
+            [
+                "790b5c201b0a6070"
+            ]
+        ]
+    },
+    {
+        "id": "77b63275c73e18c0",
+        "type": "inject",
+        "z": "8c0728bb0b08ab8d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 220,
+        "wires": [
+            [
+                "0efe6eb8d02e97a9"
+            ]
+        ]
+    },
+    {
+        "id": "f72afb8fd8b0da70",
+        "type": "file in",
+        "z": "8c0728bb0b08ab8d",
+        "name": "",
+        "filename": "/home/pi/Desktop/ProjetoIoT-main/iot.csv",
+        "filenameType": "str",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 720,
+        "y": 360,
+        "wires": [
+            [
+                "defdee990f6748a8"
+            ]
+        ]
+    },
+    {
+        "id": "feb684f7aebe5171",
+        "type": "mqtt-broker",
+        "name": "broker-adafruit",
+        "broker": "io.adafruit.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
